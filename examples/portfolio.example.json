@@ -1,0 +1,754 @@
+{
+  "portfolio": {
+    "name": "<client or portfolio name>",
+    "version": "1.0",
+    "date": "<date>",
+    "lens": "balanced",
+    "lens_approved_by": "A. Example, VP Operations",
+    "lens_approved_date": "2026-01-15",
+    "risk_appetite": "No red risk without a named owner and a review date.",
+    "risk_threshold": 9,
+    "next_review": "2026-04-15",
+    "purpose": [
+      "Scores each proposed initiative on a consistent set of weighted dimensions so that sequencing and funding decisions can be defended in an EA forum.",
+      "Replace this text with the specific purpose for this engagement.",
+      "Every score is a starting position for review, not a decision."
+    ]
+  },
+  "weights": {
+    "business_value": 0.2,
+    "cost_optimization": 0.2,
+    "time_criticality": 0.2,
+    "risk_reduction": 0.1,
+    "security_compliance": 0.1,
+    "delivery_confidence": 0.1,
+    "strategic_alignment": 0.1
+  },
+  "weight_rationale": [
+    "Whether the initiative changes a business outcome, not just a technical one.",
+    "Direct savings and the ability to evidence savings. An unevidenced saving cannot be booked.",
+    "Deadlines, vendor retirements, and problems that cost something every month they wait.",
+    "Reduction in incident frequency, blast radius, or single points of failure.",
+    "Net change in security posture. This can be negative.",
+    "Confidence the work lands on time and scope. Low confidence discounts a high score.",
+    "Whether it advances a target-state standard or is purely tactical."
+  ],
+  "projects": [
+    {
+      "id": "P1",
+      "sheet": "P1",
+      "name": "EXAMPLE  Replace nightly batch export with event streaming",
+      "cost": 84000,
+      "months": 3,
+      "sponsor": "A. Example, VP Operations",
+      "architecture_owner": "B. Example, Cloud Architect",
+      "delivery_owner": "C. Example, Delivery Lead",
+      "deadline": "None contractual. The nightly window is already overrunning twice a week.",
+      "status": "Proposed, awaiting approval",
+      "wave": "Wave 1",
+      "basis": "Proposal deck slides 6 and 14; batch failure log Jan to Jun 2026.",
+      "cost_note": "Proposal deck slide 14. Line items sum correctly.",
+      "duration_note": "3 months, two engineers plus part-time architect.",
+      "scores": {
+        "business_value": 4,
+        "cost_optimization": 3,
+        "time_criticality": 3,
+        "risk_reduction": 4,
+        "security_compliance": 3,
+        "delivery_confidence": 4,
+        "strategic_alignment": 4
+      },
+      "assessments": {
+        "business_value": {
+          "assessment": "Downstream teams currently wait until 06:00 for data that is generated continuously. Removing the wait changes when decisions can be made, not just how fast a job runs.",
+          "owner": "A. Example",
+          "evidence": "Deck slide 6; batch completion times Jan to Jun."
+        },
+        "cost_optimization": {
+          "assessment": "Removes an always-on batch VM but adds Event Hubs throughput units. Net saving is real but modest and needs modelling before it is claimed.",
+          "owner": "FinOps",
+          "evidence": "Deck slide 14. Throughput unit cost not in the estimate."
+        },
+        "time_criticality": {
+          "assessment": "No deadline, but the nightly window overruns twice a week and the failure rate is trending up.",
+          "owner": "Platform Team",
+          "evidence": "Batch failure log Jan to Jun 2026."
+        },
+        "risk_reduction": {
+          "assessment": "Removes a single nightly failure point that currently takes the whole downstream chain with it.",
+          "owner": "Platform Team",
+          "evidence": "Incident records, 6 occurrences in H1."
+        },
+        "security_compliance": {
+          "assessment": "Replaces a shared service account with managed identity. Modest control improvement.",
+          "owner": "Security",
+          "evidence": "Current-state review, section 4."
+        },
+        "delivery_confidence": {
+          "assessment": "The same pattern is already in production for a smaller feed, so this reuses a proven design.",
+          "owner": "Architecture",
+          "evidence": "Existing implementation on the orders feed."
+        },
+        "strategic_alignment": {
+          "assessment": "Advances the event-driven target state and creates a pattern other feeds can reuse.",
+          "owner": "Architecture",
+          "evidence": "Target-state architecture, section 3."
+        }
+      },
+      "scope_in": [
+        "Event Hubs ingestion for the customer feed",
+        "Consumer rewrite with idempotent handling",
+        "Parallel run against the existing batch",
+        "Runbook and alert updates"
+      ],
+      "scope_out": [
+        "Other feeds beyond the customer feed",
+        "Downstream consumer redesign",
+        "Data model changes",
+        "Decommission of the batch VM (separate change)"
+      ],
+      "dependencies": [
+        [
+          "Platform",
+          "Existing Event Hubs namespace",
+          "Reuse, do not recreate. Upstream diagnostic settings point at it.",
+          "Platform Team",
+          "Critical"
+        ],
+        [
+          "Client team",
+          "Downstream data owners",
+          "They must confirm parity before the batch is switched off.",
+          "PM",
+          "High"
+        ],
+        [
+          "Internal",
+          "P2 Cost visibility work",
+          "Supplies the run-cost baseline this project's saving is measured against.",
+          "FinOps",
+          "Medium"
+        ],
+        [
+          "Resource",
+          "Solutions Architect capacity",
+          "Part time for 3 months. Check against other initiatives.",
+          "Delivery lead",
+          "Medium"
+        ]
+      ],
+      "risks": [
+        [
+          "Duplicate or lost records during parallel run",
+          "Medium",
+          "Critical",
+          "Run both paths against a shadow consumer group and reconcile record counts daily before cutover.",
+          "Architecture",
+          "Mitigate",
+          "Low",
+          "High"
+        ],
+        [
+          "Event Hubs throughput unit cost not modelled",
+          "High",
+          "Medium",
+          "Model expected events per second against the pricing tier before committing.",
+          "FinOps",
+          "Mitigate",
+          "Low",
+          "Medium"
+        ],
+        [
+          "Downstream consumers assume a nightly batch boundary",
+          "Medium",
+          "High",
+          "Survey each consumer for time-window assumptions during design.",
+          "PM"
+        ],
+        [
+          "Batch VM decommission deferred indefinitely, so no saving lands",
+          "High",
+          "Medium",
+          "Make the decommission a named deliverable with a date, not a follow-up.",
+          "Delivery lead"
+        ]
+      ],
+      "kpis": [
+        [
+          "Data freshness, generation to availability",
+          "8 hours (nightly)",
+          "Under 5 minutes",
+          "Pipeline telemetry",
+          "30 days after cutover"
+        ],
+        [
+          "Failed nightly runs per month",
+          "2.3 average H1 2026",
+          "0",
+          "Incident records",
+          "90 days after cutover"
+        ],
+        [
+          "Monthly run cost for the feed",
+          "TBC, batch VM plus storage",
+          "Below baseline including throughput units",
+          "Azure cost export",
+          "60 days after cutover"
+        ],
+        [
+          "Record parity, new path versus batch",
+          "Batch baseline",
+          "100 percent during parallel run",
+          "Reconciliation report",
+          "During parallel run"
+        ]
+      ],
+      "gates": [
+        [
+          "Met",
+          "Target-state architecture section 3",
+          "B. Example"
+        ],
+        [
+          "Met",
+          "Reuses the orders feed pattern",
+          "B. Example"
+        ],
+        [
+          "Partial",
+          "Managed identity designed, formal review not recorded",
+          "Security"
+        ],
+        [
+          "Not started",
+          "Ownership after handover undefined",
+          "Platform Team"
+        ],
+        [
+          "Partial",
+          "KPIs defined; run-cost baseline outstanding",
+          "FinOps"
+        ],
+        [
+          "Met",
+          "Batch path retained until parallel run passes",
+          "Architecture"
+        ],
+        [
+          "Not met",
+          "Throughput unit cost not modelled",
+          "FinOps"
+        ],
+        [
+          "Not started",
+          "Customer data classification",
+          "Legal"
+        ],
+        [
+          "Not started",
+          "Change window for cutover",
+          "PMO"
+        ],
+        [
+          "Partial",
+          "ADR drafted, not yet accepted by the architecture board",
+          "B. Example"
+        ]
+      ],
+      "capability": "Customer data distribution (value stream: order to insight)",
+      "principles": "Event-driven by default; managed identity over shared accounts",
+      "gap_closed": "Baseline: nightly batch, 8 hour latency. Target: continuous feed, under 5 minutes.",
+      "benefit_owner": "A. Example, VP Operations",
+      "benefits_review": "90 days after cutover",
+      "standards_refs": "TOGAF Phase E/F work package; COBIT APO05, EDM02",
+      "questions": [
+        "What is the current monthly run cost of the batch VM and its storage?",
+        "How many events per second at peak, so throughput units can be sized?",
+        "Which downstream consumers assume a nightly batch boundary?",
+        "Who owns the pipeline and its alerts after handover?",
+        "Can the batch VM decommission be a named deliverable with a date?"
+      ]
+    },
+    {
+      "id": "P2",
+      "sheet": "P2",
+      "name": "",
+      "cost": 0,
+      "months": 0,
+      "sponsor": "TBC",
+      "architecture_owner": "TBC",
+      "delivery_owner": "TBC",
+      "deadline": "",
+      "status": "Proposed",
+      "wave": "",
+      "basis": "TBC"
+    },
+    {
+      "id": "P3",
+      "sheet": "P3",
+      "name": "",
+      "cost": 0,
+      "months": 0,
+      "sponsor": "TBC",
+      "architecture_owner": "TBC",
+      "delivery_owner": "TBC",
+      "deadline": "",
+      "status": "Proposed",
+      "wave": "",
+      "basis": "TBC"
+    },
+    {
+      "id": "P4",
+      "sheet": "P4",
+      "name": "",
+      "cost": 0,
+      "months": 0,
+      "sponsor": "TBC",
+      "architecture_owner": "TBC",
+      "delivery_owner": "TBC",
+      "deadline": "",
+      "status": "Proposed",
+      "wave": "",
+      "basis": "TBC"
+    },
+    {
+      "id": "P5",
+      "sheet": "P5",
+      "name": "",
+      "cost": 0,
+      "months": 0,
+      "sponsor": "TBC",
+      "architecture_owner": "TBC",
+      "delivery_owner": "TBC",
+      "deadline": "",
+      "status": "Proposed",
+      "wave": "",
+      "basis": "TBC"
+    },
+    {
+      "id": "P6",
+      "sheet": "P6",
+      "name": "",
+      "cost": 0,
+      "months": 0,
+      "sponsor": "TBC",
+      "architecture_owner": "TBC",
+      "delivery_owner": "TBC",
+      "deadline": "",
+      "status": "Proposed",
+      "wave": "",
+      "basis": "TBC"
+    },
+    {
+      "id": "P7",
+      "sheet": "P7",
+      "name": "",
+      "cost": 0,
+      "months": 0,
+      "sponsor": "TBC",
+      "architecture_owner": "TBC",
+      "delivery_owner": "TBC",
+      "deadline": "",
+      "status": "Proposed",
+      "wave": "",
+      "basis": "TBC"
+    },
+    {
+      "id": "P8",
+      "sheet": "P8",
+      "name": "",
+      "cost": 0,
+      "months": 0,
+      "sponsor": "TBC",
+      "architecture_owner": "TBC",
+      "delivery_owner": "TBC",
+      "deadline": "",
+      "status": "Proposed",
+      "wave": "",
+      "basis": "TBC"
+    }
+  ],
+  "waves": [
+    [
+      "Wave 1",
+      "<initiatives>",
+      "<window>",
+      0,
+      "<why this grouping>",
+      "<entry condition>"
+    ],
+    [
+      "Wave 2",
+      "",
+      "",
+      0,
+      "",
+      ""
+    ],
+    [
+      "Wave 3",
+      "",
+      "",
+      0,
+      "",
+      ""
+    ],
+    [
+      "Hold",
+      "",
+      "Not scheduled",
+      0,
+      "<why held rather than dropped>",
+      "<what would unhold it>"
+    ]
+  ],
+  "cross_dependencies": [
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ],
+  "resources": [
+    [
+      "Solutions Architect",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "DevOps / Platform Engineer",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "Project Manager",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "FinOps",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ],
+  "open_questions": [
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Open"
+    ]
+  ],
+  "documents": [
+    [
+      "PROPOSAL",
+      "P1",
+      "Proposal deck, event streaming for the customer feed",
+      "v3, 2026-01-08",
+      "A. Example",
+      "Received"
+    ],
+    [
+      "ESTIMATE",
+      "P1",
+      "Cost and effort estimate, deck slide 14",
+      "v3, 2026-01-08",
+      "A. Example",
+      "Received"
+    ],
+    [
+      "TARGET_STATE",
+      "ALL",
+      "Target-state architecture, section 3",
+      "v2, 2025-11-20",
+      "B. Example",
+      "Received"
+    ],
+    [
+      "LENS",
+      "ALL",
+      "Sponsor email confirming the balanced lens",
+      "2026-01-15",
+      "A. Example",
+      "Received"
+    ],
+    [
+      "FUNDING",
+      "ALL",
+      "Funding envelope not yet defined, confirmed in writing",
+      "2026-01-15",
+      "C. Example",
+      "Received"
+    ],
+    [
+      "INCIDENTS",
+      "ALL",
+      "Batch failure log, January to June",
+      "2026-07-01",
+      "Platform Team",
+      "Received"
+    ],
+    [
+      "COST_BASELINE",
+      "P1",
+      "Run-cost export for the batch VM and storage",
+      "",
+      "FinOps",
+      "Requested"
+    ]
+  ],
+  "decisions": [
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    [
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  ],
+  "savings": {
+    "P1": {
+      "annual_run_cost": 0,
+      "expected_saving": 0,
+      "note": "EXAMPLE. Fill D and E once the baseline arrives. Payback calculates."
+    }
+  },
+  "summary_notes": [
+    "Weighted score answers how much this matters. Score per $100k answers how much we get for the money.",
+    "Replace these lines with the specific reading for this portfolio, naming initiatives."
+  ]
+}

@@ -1,0 +1,1024 @@
+{
+ "portfolio": {
+  "name": "Fernwood Distribution Ltd, cloud portfolio (TEST SCENARIO)",
+  "version": "1.0",
+  "date": "2026-03-09",
+  "lens": "run_cost",
+  "purpose": [
+   "Ranks five proposed cloud initiatives for a first funding tranche of up to 150,000 USD, weighted for run cost as the CFO instructed on 2026-03-02.",
+   "All names and figures are fictional test data.",
+   "Every score is a starting position for review, not a decision."
+  ]
+ },
+ "weights": {
+  "business_value": 0.1,
+  "cost_optimization": 0.35,
+  "time_criticality": 0.15,
+  "risk_reduction": 0.1,
+  "security_compliance": 0.05,
+  "delivery_confidence": 0.15,
+  "strategic_alignment": 0.1
+ },
+ "weight_rationale": [
+  "Business outcome, not just technical change.",
+  "Highest weight: sponsor asked to reduce run cost first (LENS).",
+  "Second priority per sponsor: deadline risk.",
+  "Reduction in incidents and single points of failure.",
+  "Net change in security posture. Can be negative.",
+  "Capacity and clarity of scope.",
+  "Fit to target-state principles."
+ ],
+ "projects": [
+  {
+   "id": "P1",
+   "sheet": "P1",
+   "name": "Cloud cost visibility and tagging",
+   "cost": 48000,
+   "months": 2,
+   "sponsor": "Priya Narang, Head of Infrastructure",
+   "architecture_owner": "R. Alder, Solutions Architect",
+   "delivery_owner": "K. Dunmore, Delivery Lead",
+   "deadline": "None. It is an enabler for P2, P3 and P4 savings claims.",
+   "status": "Proposed, awaiting first tranche",
+   "wave": "Wave 1",
+   "basis": "PROPOSAL-P1, ESTIMATE-P1, TARGET_STATE principle 2.",
+   "cost_note": "ESTIMATE-P1. Line items sum to 48,000.",
+   "duration_note": "2 months, April to May 2026. R. Alder 120 hours.",
+   "scores": {
+    "business_value": 3,
+    "cost_optimization": 4,
+    "time_criticality": 3,
+    "risk_reduction": 2,
+    "security_compliance": 2,
+    "delivery_confidence": 4,
+    "strategic_alignment": 4
+   },
+   "assessments": {
+    "business_value": {
+     "assessment": "Allocation of spend to a named owner moves from about 60% to 100%. It supports decisions but does not itself change the business outcome.",
+     "owner": "Priya Narang",
+     "evidence": "PROPOSAL-P1 benefits."
+    },
+    "cost_optimization": {
+     "assessment": "No saving of its own, but it is the baseline that lets other savings be evidenced and booked. High value as an enabler.",
+     "owner": "Finance",
+     "evidence": "PROPOSAL-P1; COST_BASELINE shows P4 has no baseline."
+    },
+    "time_criticality": {
+     "assessment": "No deadline and nothing gets worse monthly if it waits, but P2 and P3 savings cannot be proven until it lands.",
+     "owner": "Priya Narang",
+     "evidence": "PROPOSAL-P1; ESTIMATE-P1."
+    },
+    "risk_reduction": {
+     "assessment": "Little risk reduction. Untagged spend is a control weakness, not an incident source.",
+     "owner": "Priya Narang",
+     "evidence": "INCIDENTS shows no cost-allocation incident."
+    },
+    "security_compliance": {
+     "assessment": "Neutral to slightly positive. Security review marked not required.",
+     "owner": "Marta Quesnel",
+     "evidence": "SECURITY review status."
+    },
+    "delivery_confidence": {
+     "assessment": "Small, well understood scope, two months, effort fits capacity.",
+     "owner": "R. Alder",
+     "evidence": "ESTIMATE-P1; CAPACITY."
+    },
+    "strategic_alignment": {
+     "assessment": "Implements target-state principle 2 directly.",
+     "owner": "R. Alder",
+     "evidence": "TARGET_STATE principle 2."
+    }
+   },
+   "scope_in": [
+    "Tagging policy and enforcement",
+    "Cost export pipeline",
+    "Owner dashboards",
+    "Owner training"
+   ],
+   "scope_out": [
+    "Cost reduction work",
+    "Chargeback to business units"
+   ],
+   "dependencies": [
+    [
+     "Internal",
+     "Ownership of shared-service tags",
+     "Shared services have no obvious owner. Needs a decision before enforcement.",
+     "Priya Narang",
+     "High"
+    ],
+    [
+     "Resource",
+     "Solutions Architect capacity",
+     "120 hours in April and May. Check against P2 in the same months.",
+     "Delivery lead",
+     "Medium"
+    ]
+   ],
+   "risks": [
+    [
+     "Shared services have no tag owner, so spend stays unallocated",
+     "Medium",
+     "Medium",
+     "Name an owner per shared service before enforcement starts.",
+     "Priya Narang"
+    ],
+    [
+     "Owners ignore dashboards",
+     "Medium",
+     "Low",
+     "Monthly review in the infrastructure meeting.",
+     "K. Dunmore"
+    ]
+   ],
+   "kpis": [
+    [
+     "Share of cloud spend allocated to a named owner",
+     "About 60%",
+     "100%",
+     "Monthly cost export",
+     "60 days after delivery"
+    ],
+    [
+     "Unowned shared-service spend",
+     "Not measured",
+     "Zero",
+     "Monthly cost export",
+     "60 days after delivery"
+    ]
+   ],
+   "gates": [
+    [
+     "Met",
+     "TARGET_STATE principle 2",
+     "R. Alder"
+    ],
+    [
+     "Met",
+     "Uses native tagging and cost export",
+     "R. Alder"
+    ],
+    [
+     "Not started",
+     "Security review not required per SECURITY",
+     "Marta Quesnel"
+    ],
+    [
+     "Partial",
+     "Delivery lead named, run owner for dashboards not named",
+     "Priya Narang"
+    ],
+    [
+     "Partial",
+     "Allocation baseline of about 60% stated, source not provided",
+     "Finance"
+    ],
+    [
+     "Not applicable",
+     "No production change to roll back",
+     "R. Alder"
+    ],
+    [
+     "Met",
+     "Cost and run cost in ESTIMATE-P1",
+     "Finance"
+    ],
+    [
+     "Not applicable",
+     "No personal data",
+     "R. Alder"
+    ],
+    [
+     "Not started",
+     "Change path not confirmed",
+     "PMO"
+    ],
+    [
+     "Not started",
+     "ADR not drafted",
+     "R. Alder"
+    ]
+   ],
+   "questions": [
+    "Who owns the tags for shared services?",
+    "What is the source of the 60% allocation figure?"
+   ]
+  },
+  {
+   "id": "P2",
+   "sheet": "P2",
+   "name": "Retire the on-premises file servers",
+   "cost": 96000,
+   "months": 4,
+   "sponsor": "Priya Narang, Head of Infrastructure",
+   "architecture_owner": "R. Alder, Solutions Architect",
+   "delivery_owner": "K. Dunmore, Delivery Lead",
+   "deadline": "2027-01-31: Windows Server 2012 R2 extended support ends; insurer requires remediation by that date.",
+   "status": "Proposed, awaiting first tranche",
+   "wave": "Wave 1",
+   "basis": "PROPOSAL-P2, ESTIMATE-P2, COST_BASELINE, INCIDENTS, CONTRACTS, SECURITY.",
+   "cost_note": "ESTIMATE-P2. Line items sum to 96,000.",
+   "duration_note": "4 months, April to July 2026. R. Alder 300 hours.",
+   "scores": {
+    "business_value": 3,
+    "cost_optimization": 4,
+    "time_criticality": 5,
+    "risk_reduction": 4,
+    "security_compliance": 5,
+    "delivery_confidence": 4,
+    "strategic_alignment": 4
+   },
+   "assessments": {
+    "business_value": {
+     "assessment": "Removes recurring outages and an audit finding. The business outcome is reliability and compliance rather than new capability.",
+     "owner": "Priya Narang",
+     "evidence": "INCIDENTS: 3 unplanned outages in 6 months."
+    },
+    "cost_optimization": {
+     "assessment": "Run cost 9,400 a month falls to 3,900 a month: 5,500 a month, about 66,000 a year, backed by the finance export.",
+     "owner": "Finance",
+     "evidence": "COST_BASELINE (9,400); ESTIMATE-P2 (3,900)."
+    },
+    "time_criticality": {
+     "assessment": "Hard external date: OS support ends 2027-01-31 and the insurer requires remediation by then. Four months of work leaves margin.",
+     "owner": "Priya Narang",
+     "evidence": "CONTRACTS; INCIDENTS open audit finding."
+    },
+    "risk_reduction": {
+     "assessment": "Removes the failing disk array behind three outages and closes the unsupported-OS audit finding.",
+     "owner": "Priya Narang",
+     "evidence": "INCIDENTS."
+    },
+    "security_compliance": {
+     "assessment": "Closes an open audit finding. Security review done with no objections.",
+     "owner": "Marta Quesnel",
+     "evidence": "SECURITY review status; INCIDENTS audit finding."
+    },
+    "delivery_confidence": {
+     "assessment": "Pilot on the finance share ran four weeks with no issues. Cutover window for warehouse shares is still open.",
+     "owner": "K. Dunmore",
+     "evidence": "PROPOSAL-P2 summary."
+    },
+    "strategic_alignment": {
+     "assessment": "Retires on-premises hardware, matching the target-state direction and principle 1.",
+     "owner": "R. Alder",
+     "evidence": "TARGET_STATE principles 1 and 5."
+    }
+   },
+   "scope_in": [
+    "Data migration",
+    "Permission mapping",
+    "Parallel run",
+    "Cutover",
+    "Decommission"
+   ],
+   "scope_out": [
+    "Document management system",
+    "Desktop client changes"
+   ],
+   "dependencies": [
+    [
+     "Internal",
+     "P1 Cost visibility",
+     "P1 gives the baseline against which the saving is shown. P2 can proceed without it but the saving is then asserted by finance export only.",
+     "Priya Narang",
+     "Medium"
+    ],
+    [
+     "Resource",
+     "Solutions Architect capacity",
+     "300 hours across April to July, 75 a month.",
+     "Delivery lead",
+     "Medium"
+    ],
+    [
+     "Business",
+     "Warehouse cutover window",
+     "Not agreed. Needed before cutover is scheduled.",
+     "Warehouse operations",
+     "High"
+    ]
+   ],
+   "risks": [
+    [
+     "Data loss or permission errors at cutover",
+     "Medium",
+     "Critical",
+     "Parallel run with reconciliation of permissions and file counts before the old shares are switched off.",
+     "K. Dunmore"
+    ],
+    [
+     "Warehouse cutover window too short",
+     "High",
+     "Medium",
+     "Agree the window with warehouse operations before scheduling.",
+     "K. Dunmore"
+    ],
+    [
+     "OS support lapses before the migration completes",
+     "Low",
+     "Critical",
+     "Four month plan ends July 2026, six months before the date. Escalate if cutover slips past October.",
+     "Priya Narang"
+    ]
+   ],
+   "kpis": [
+    [
+     "Unplanned file-service outage hours per 6 months",
+     "19 hours (3 outages)",
+     "0",
+     "Incident records",
+     "90 days after cutover"
+    ],
+    [
+     "File service run cost per month",
+     "9,400",
+     "3,900",
+     "Finance cost export",
+     "60 days after decommission"
+    ],
+    [
+     "Open audit finding on unsupported OS",
+     "Open",
+     "Closed",
+     "Audit register",
+     "Before 2027-01-31"
+    ]
+   ],
+   "gates": [
+    [
+     "Met",
+     "Enterprise file and content services",
+     "R. Alder"
+    ],
+    [
+     "Met",
+     "Managed service per principle 1",
+     "R. Alder"
+    ],
+    [
+     "Met",
+     "Review done, no objections",
+     "Marta Quesnel"
+    ],
+    [
+     "Partial",
+     "Delivery lead named, run owner after handover not named",
+     "Priya Narang"
+    ],
+    [
+     "Met",
+     "Outage hours and run cost baselines in INCIDENTS and COST_BASELINE",
+     "Finance"
+    ],
+    [
+     "Partial",
+     "Old shares retained after cutover, retention period not agreed",
+     "K. Dunmore"
+    ],
+    [
+     "Met",
+     "Cost, run cost and saving agreed with finance export",
+     "Finance"
+    ],
+    [
+     "Partial",
+     "Permission mapping covers access, retention of file data not confirmed",
+     "R. Alder"
+    ],
+    [
+     "Not started",
+     "Cutover change window not agreed",
+     "PMO"
+    ],
+    [
+     "Not started",
+     "ADR not drafted",
+     "R. Alder"
+    ]
+   ],
+   "questions": [
+    "What is the acceptable cutover window for the warehouse shares?",
+    "How long must old shares be retained after cutover?"
+   ]
+  },
+  {
+   "id": "P3",
+   "sheet": "P3",
+   "name": "Consolidate three monitoring tools",
+   "cost": 72000,
+   "months": 3,
+   "sponsor": "Priya Narang, Head of Infrastructure",
+   "architecture_owner": "R. Alder, Solutions Architect",
+   "delivery_owner": "K. Dunmore, Delivery Lead",
+   "deadline": "2026-09-16: notice date for tool C, which renews 2026-12-15 for 12 months at 2,700 a month.",
+   "status": "Proposed, awaiting second tranche",
+   "wave": "Wave 2",
+   "basis": "PROPOSAL-P3, ESTIMATE-P3, COST_BASELINE, INCIDENTS, CONTRACTS.",
+   "cost_note": "ESTIMATE-P3. Line items sum to 72,000. Run cost after delivery varies with ingest.",
+   "duration_note": "3 months, August to October 2026. R. Alder 120 hours.",
+   "scores": {
+    "business_value": 3,
+    "cost_optimization": 3,
+    "time_criticality": 4,
+    "risk_reduction": 3,
+    "security_compliance": 3,
+    "delivery_confidence": 3,
+    "strategic_alignment": 4
+   },
+   "assessments": {
+    "business_value": {
+     "assessment": "One alerting path replaces three. Two missed alerts in six months show the cost of splitting them.",
+     "owner": "Priya Narang",
+     "evidence": "INCIDENTS: two delayed responses."
+    },
+    "cost_optimization": {
+     "assessment": "Current spend 10,000 a month. After delivery 5,500 to 9,000 a month depending on ingest, so the saving is 1,000 to 4,500 a month, 12,000 to 54,000 a year. The vendor's 45% is the top of a range and is not used. Consumption billing and volume from P1 and P4 are not in the estimate.",
+     "owner": "Finance",
+     "evidence": "COST_BASELINE; ESTIMATE-P3; PROPOSAL-P3."
+    },
+    "time_criticality": {
+     "assessment": "Soft deadline: notice for tool C is due 2026-09-16 and the project ends in October, so renewal is likely unless the decision is made earlier.",
+     "owner": "Priya Narang",
+     "evidence": "CONTRACTS."
+    },
+    "risk_reduction": {
+     "assessment": "Fixes the missed-alert pattern but not the root cause of outages.",
+     "owner": "K. Dunmore",
+     "evidence": "INCIDENTS."
+    },
+    "security_compliance": {
+     "assessment": "Neutral. Security review not started.",
+     "owner": "Marta Quesnel",
+     "evidence": "SECURITY review status."
+    },
+    "delivery_confidence": {
+     "assessment": "Moderate: new platform and billing model, R. Alder committed in the same months as P4 if P4 proceeds.",
+     "owner": "R. Alder",
+     "evidence": "ESTIMATE-P3; CAPACITY."
+    },
+    "strategic_alignment": {
+     "assessment": "Implements target-state principle 3 and one observability platform.",
+     "owner": "R. Alder",
+     "evidence": "TARGET_STATE principle 3."
+    }
+   },
+   "scope_in": [
+    "Platform onboarding",
+    "Agent rollout",
+    "Alert migration",
+    "Training"
+   ],
+   "scope_out": [
+    "Application performance tracing",
+    "Log retention redesign"
+   ],
+   "dependencies": [
+    [
+     "Internal",
+     "P1 Cost visibility",
+     "Ingest cost per team cannot be controlled without tagging.",
+     "Priya Narang",
+     "High"
+    ],
+    [
+     "Commercial",
+     "Tool C renewal",
+     "Notice due 2026-09-16 for the 2026-12-15 renewal.",
+     "Priya Narang",
+     "High"
+    ],
+    [
+     "Resource",
+     "Solutions Architect capacity",
+     "120 hours in August to October.",
+     "Delivery lead",
+     "Medium"
+    ]
+   ],
+   "risks": [
+    [
+     "Ingest volume grows and the bill exceeds the estimate",
+     "High",
+     "High",
+     "Cap ingest per team, review monthly, set a budget alert.",
+     "Priya Narang"
+    ],
+    [
+     "Alert migration gaps during the switch",
+     "Medium",
+     "High",
+     "Run old and new in parallel for one on-call cycle.",
+     "K. Dunmore"
+    ]
+   ],
+   "kpis": [
+    [
+     "Missed or one-tool-only alerts per 6 months",
+     "2 incidents",
+     "0",
+     "Incident records",
+     "90 days after cutover"
+    ],
+    [
+     "Monitoring tooling cost per month",
+     "10,000",
+     "Under 9,000",
+     "Finance cost export",
+     "60 days after cutover"
+    ],
+    [
+     "Ingest volume assumed",
+     "TBC",
+     "Agreed figure",
+     "Platform vendor trial",
+     "Before approval"
+    ]
+   ],
+   "gates": [
+    [
+     "Met",
+     "Observability and operations",
+     "R. Alder"
+    ],
+    [
+     "Met",
+     "One platform per principle 3",
+     "R. Alder"
+    ],
+    [
+     "Not started",
+     "Security review not started",
+     "Marta Quesnel"
+    ],
+    [
+     "Partial",
+     "Run owner after handover not named",
+     "Priya Narang"
+    ],
+    [
+     "Partial",
+     "Spend baseline known, ingest volume baseline not",
+     "Finance"
+    ],
+    [
+     "Partial",
+     "Old tools kept until parallel run passes",
+     "K. Dunmore"
+    ],
+    [
+     "Partial",
+     "Range of saving, not a point value; ingest not modelled",
+     "Finance"
+    ],
+    [
+     "Not started",
+     "Data content of telemetry not classified",
+     "Marta Quesnel"
+    ],
+    [
+     "Not started",
+     "Change path not confirmed",
+     "PMO"
+    ],
+    [
+     "Not started",
+     "ADR not drafted",
+     "R. Alder"
+    ]
+   ],
+   "questions": [
+    "What ingest volume should be assumed?",
+    "Is 2026-09-16 the decision date for tool C?"
+   ]
+  },
+  {
+   "id": "P4",
+   "sheet": "P4",
+   "name": "Containerize order management on self-managed Kubernetes",
+   "cost": 220000,
+   "months": 5,
+   "sponsor": "Tomas Ellery, Head of Applications",
+   "architecture_owner": "R. Alder, Solutions Architect",
+   "delivery_owner": "L. Hartwell, Delivery Lead",
+   "deadline": "None stated.",
+   "status": "Proposed, not recommended in current form",
+   "wave": "Hold",
+   "basis": "PROPOSAL-P4, ESTIMATE-P4, TARGET_STATE, SECURITY, CAPACITY, COST_BASELINE.",
+   "cost_note": "ESTIMATE-P4 line items sum to 220,000. The proposal deck states 205,000, a 15,000 difference. 220,000 used.",
+   "duration_note": "5 months, June to October 2026. R. Alder 1,100 hours.",
+   "scores": {
+    "business_value": 3,
+    "cost_optimization": 2,
+    "time_criticality": 2,
+    "risk_reduction": 2,
+    "security_compliance": 1,
+    "delivery_confidence": 2,
+    "strategic_alignment": 1
+   },
+   "assessments": {
+    "business_value": {
+     "assessment": "Release lead time 14 to 5 days is a real benefit but unevidenced. The 14-day figure has no source. One rollback in the last six months.",
+     "owner": "Tomas Ellery",
+     "evidence": "PROPOSAL-P4; INCIDENTS (one rollback)."
+    },
+    "cost_optimization": {
+     "assessment": "The claimed 30% run cost reduction has no baseline: the order-management platform is not in the finance export and ESTIMATE-P4 states no run cost. No saving can be claimed.",
+     "owner": "Finance",
+     "evidence": "COST_BASELINE note; ESTIMATE-P4."
+    },
+    "time_criticality": {
+     "assessment": "No deadline.",
+     "owner": "Tomas Ellery",
+     "evidence": "PROPOSAL-P4."
+    },
+    "risk_reduction": {
+     "assessment": "Self-managed nodes add patching and cluster failure exposure. No incident history to remove.",
+     "owner": "R. Alder",
+     "evidence": "PROPOSAL-P4 design notes."
+    },
+    "security_compliance": {
+     "assessment": "Keys stored on nodes break SEC-07 and the managed-identity principle. Node patching moves from the provider to the platform team. Security review not started. Scored 1 until a design that meets SEC-07 exists.",
+     "owner": "Marta Quesnel",
+     "evidence": "SECURITY SEC-07; PROPOSAL-P4 design notes."
+    },
+    "delivery_confidence": {
+     "assessment": "R. Alder is estimated at 1,100 hours over 5 months against 160 productive hours a month (800 available), and the team has not run a production cluster.",
+     "owner": "R. Alder",
+     "evidence": "ESTIMATE-P4; CAPACITY; PROPOSAL-P4 risks."
+    },
+    "strategic_alignment": {
+     "assessment": "Contradicts principle 1 (managed over self-managed) and direction to managed platform services.",
+     "owner": "R. Alder",
+     "evidence": "TARGET_STATE principle 1 and direction."
+    }
+   },
+   "scope_in": [
+    "Cluster build",
+    "Application refactor",
+    "Migration",
+    "Training and handover"
+   ],
+   "scope_out": [
+    "Database tier",
+    "Customer web front end"
+   ],
+   "dependencies": [
+    [
+     "Internal",
+     "P1 Cost visibility",
+     "No baseline exists for order-management run cost. P1 would produce it.",
+     "Priya Narang",
+     "High"
+    ],
+    [
+     "Commercial",
+     "P3 observability platform",
+     "Cluster telemetry would add ingest volume to a consumption-billed platform not in P3's estimate.",
+     "Priya Narang",
+     "Medium"
+    ],
+    [
+     "Resource",
+     "Solutions Architect capacity",
+     "1,100 hours is more than available in the period and collides with P2 and P3.",
+     "Delivery lead",
+     "Critical"
+    ]
+   ],
+   "risks": [
+    [
+     "Credentials stored as keys on nodes breach SEC-07",
+     "High",
+     "High",
+     "Redesign to managed identity or drop the self-managed design.",
+     "Marta Quesnel"
+    ],
+    [
+     "Architect capacity exceeded: 1,100 hours against 800 available",
+     "High",
+     "High",
+     "Resequence, split the scope or reduce architect hours before approval.",
+     "Tomas Ellery"
+    ],
+    [
+     "Team has not run a production cluster",
+     "High",
+     "Medium",
+     "Managed Kubernetes service or training before approval.",
+     "Tomas Ellery"
+    ],
+    [
+     "Unknown refactor scope inflates cost",
+     "High",
+     "High",
+     "Fixed-scope assessment before approval.",
+     "L. Hartwell"
+    ]
+   ],
+   "kpis": [
+    [
+     "Order-management run cost per month",
+     "TBC, not in finance export",
+     "Evidenced reduction",
+     "Finance cost export",
+     "60 days after cutover"
+    ],
+    [
+     "Release lead time",
+     "14 days (unsourced)",
+     "5 days",
+     "Deployment records",
+     "90 days after cutover"
+    ]
+   ],
+   "gates": [
+    [
+     "Partial",
+     "Order management",
+     "R. Alder"
+    ],
+    [
+     "Not met",
+     "Contradicts principle 1 and SEC-07",
+     "R. Alder"
+    ],
+    [
+     "Not started",
+     "Security review not started",
+     "Marta Quesnel"
+    ],
+    [
+     "Not started",
+     "Run team after handover not agreed",
+     "Tomas Ellery"
+    ],
+    [
+     "Not met",
+     "No cost baseline",
+     "Finance"
+    ],
+    [
+     "Not started",
+     "Rollback not documented",
+     "L. Hartwell"
+    ],
+    [
+     "Not met",
+     "Total in deck differs from line items by 15,000; run cost not stated",
+     "Finance"
+    ],
+    [
+     "Not started",
+     "Data position not reviewed",
+     "Marta Quesnel"
+    ],
+    [
+     "Not started",
+     "Change path not confirmed",
+     "PMO"
+    ],
+    [
+     "Not started",
+     "ADR not drafted",
+     "R. Alder"
+    ]
+   ],
+   "questions": [
+    "What is the run cost baseline of the order-management platform?",
+    "Why does the deck total (205,000) differ from the line items (220,000)?",
+    "How will the design meet SEC-07?",
+    "How can 1,100 architect hours fit in the period?"
+   ]
+  },
+  {
+   "id": "P5",
+   "sheet": "P5",
+   "name": "Customer portal with an AI assistant",
+   "sponsor": "Joss Penhallow, Marketing Director",
+   "status": "Idea, no business case or estimate. Held, not scored.",
+   "wave": "Hold",
+   "basis": "PROPOSAL-P5 only.",
+   "questions": [
+    "What is the business case and expected benefit?",
+    "What is the cost, duration and scope?",
+    "What are the risks, including data and security?"
+   ]
+  }
+ ],
+ "waves": [
+  [
+   "Wave 1",
+   "P1, P2",
+   "April to July 2026",
+   144000,
+   "P2 has the hard date and the largest evidenced saving; P1 provides the baseline and is cheap. Together 144,000, inside the first tranche of 150,000.",
+   "Board approval of the first tranche on 2026-03-24. Name the shared-service tag owner. Agree the warehouse cutover window."
+  ],
+  [
+   "Wave 2",
+   "P3",
+   "August to October 2026",
+   72000,
+   "Needs P1 first so ingest can be attributed. Decision needed before the tool C notice date of 2026-09-16.",
+   "Second tranche approved after the 2026-06-01 review. Ingest volume agreed."
+  ],
+  [
+   "Wave 3",
+   "",
+   "",
+   "",
+   "",
+   ""
+  ],
+  [
+   "Hold",
+   "P4, P5",
+   "Not scheduled",
+   0,
+   "P4: security breach of SEC-07, architect capacity impossible, no baseline. P5: no business case or estimate.",
+   "P4: design that meets SEC-07, evidenced baseline, resequenced capacity. P5: a business case and an estimate."
+  ]
+ ],
+ "cross_dependencies": [
+  [
+   "P1",
+   "P3",
+   "Enables",
+   "Strong",
+   "P1 tags allow ingest cost to be attributed per team.",
+   "Priya Narang"
+  ],
+  [
+   "P1",
+   "P4",
+   "Enables",
+   "Strong",
+   "P1 would supply the missing run-cost baseline for P4.",
+   "Priya Narang"
+  ],
+  [
+   "P3",
+   "P4",
+   "Commercial",
+   "Medium",
+   "Cluster telemetry adds volume to the consumption-billed platform that P3 does not model.",
+   "Priya Narang"
+  ],
+  [
+   "P2",
+   "P4",
+   "Capacity",
+   "Strong",
+   "R. Alder is needed in the same months by P2 (April to July) and P4 (June to October).",
+   "Delivery lead"
+  ],
+  [
+   "P2",
+   "P3",
+   "Capacity",
+   "Medium",
+   "R. Alder has 120 hours in August to October for P3 only if P4 is not running.",
+   "Delivery lead"
+  ]
+ ],
+ "resources": [
+  [
+   "Solutions Architect",
+   "1",
+   "2",
+   "",
+   "160 productive hours a month, no backup. Named on every proposal. Demand: Apr-May P1 60 + P2 75 = 135; Jun-Jul P2 75 + P4 220 = 295; Aug-Oct P3 40 + P4 220 = 260.",
+   ""
+  ],
+  [
+   "Infrastructure engineers",
+   "2",
+   "",
+   "",
+   "150 hours each a month. P1 and P2 fit.",
+   ""
+  ],
+  [
+   "Platform engineers",
+   "2",
+   "",
+   "",
+   "100 hours each a month, shared with operations. P4 needs 900 hours each over 5 months.",
+   ""
+  ]
+ ],
+ "open_questions": [
+  [
+   "P2",
+   "Business",
+   "What is the acceptable cutover window for the warehouse shares?",
+   "Needed before the cutover can be scheduled.",
+   "Warehouse operations",
+   "Open"
+  ],
+  [
+   "P2",
+   "Business",
+   "How long must the old shares be retained after cutover?",
+   "Affects decommission date and cost.",
+   "Priya Narang",
+   "Open"
+  ],
+  [
+   "P1",
+   "Ownership",
+   "Who owns the tags for shared services?",
+   "Enforcement cannot start without an owner.",
+   "Priya Narang",
+   "Open"
+  ],
+  [
+   "P3",
+   "Cost",
+   "What ingest volume should be assumed?",
+   "Run cost ranges from 5,500 to 9,000 a month.",
+   "Priya Narang",
+   "Open"
+  ],
+  [
+   "P3",
+   "Commercial",
+   "Is 2026-09-16 the decision date for tool C?",
+   "Missing it commits 12 months at 2,700 a month.",
+   "Priya Narang",
+   "Open"
+  ],
+  [
+   "P4",
+   "Cost",
+   "What is the run cost baseline of the order-management platform?",
+   "The 30% claim cannot be tested without it.",
+   "Tomas Ellery",
+   "Open"
+  ],
+  [
+   "P4",
+   "Cost",
+   "Why does the deck total of 205,000 differ from the line items of 220,000?",
+   "Cost used for scoring is 220,000.",
+   "L. Hartwell",
+   "Open"
+  ],
+  [
+   "P4",
+   "Security",
+   "How will the design meet SEC-07 (managed identity, provider or automated patching)?",
+   "Blocks any approval.",
+   "Marta Quesnel",
+   "Open"
+  ],
+  [
+   "P4",
+   "Capacity",
+   "How can 1,100 architect hours fit in the period?",
+   "R. Alder has 800 productive hours in the 5 months.",
+   "Tomas Ellery",
+   "Open"
+  ],
+  [
+   "P5",
+   "Business case",
+   "What is the business case, cost, duration and risk?",
+   "Nothing to score until these exist.",
+   "Joss Penhallow",
+   "Open"
+  ],
+  [
+   "ALL",
+   "Funding",
+   "Will a second tranche follow the first-quarter review?",
+   "Wave 2 depends on it. Total envelope is not defined.",
+   "Dana Whitcombe",
+   "Open"
+  ]
+ ],
+ "savings": {
+  "P2": {
+   "annual_run_cost": 112800,
+   "expected_saving": 66000,
+   "note": "Current 9,400 a month falls to 3,900. 5,500 x 12 = 66,000."
+  },
+  "P3": {
+   "annual_run_cost": 120000,
+   "expected_saving": 12000,
+   "note": "Conservative end of 1,000 to 4,500 a month. The vendor's 45% claim is not used."
+  },
+  "P4": {
+   "annual_run_cost": 0,
+   "expected_saving": 0,
+   "note": "No baseline. No saving is claimed."
+  }
+ },
+ "summary_notes": [
+  "P2 ranks first on the run-cost lens: hard date, evidenced saving and the best case for a managed service. P1 has the best score per $100k and enables the others.",
+  "P4 scores lowest and should stay on hold: it breaches SEC-07, needs more architect hours than exist and has no cost baseline.",
+  "P5 is not scored. It has no business case or estimate."
+ ]
+}
